@@ -17,8 +17,32 @@
 		font: inherit;
 		vertical-align: baseline;
 	}
-
-	/search icon/
+blink {
+  -webkit-animation: 2s linear infinite condemned_blink_effect; // for Safari 4.0 - 8.0
+  animation: 2s linear infinite condemned_blink_effect;
+}
+@-webkit-keyframes condemned_blink_effect { // for Safari 4.0 - 8.0
+  0% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+@keyframes condemned_blink_effect {
+  0% {
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
 
 }
 .has-search .form-control {
@@ -1807,9 +1831,12 @@
 		color: #e5474b;
 	}
 
-	h1, h2, h3, h4, h5, h6 {
+	h1,h2, h3, h4, h5, h6 {
 		color: #e5474b;
 	}
+	/*h2{
+		color:white;
+	}*/
 
 	blockquote {
 		border-left-color: #e5474b;
@@ -1831,6 +1858,7 @@
 		border: solid 1px;
 		margin-bottom: 2em;
 		padding: 1.5em;
+		
 	}
 
 		.box > :last-child,
@@ -2356,11 +2384,12 @@
 		}
 
 		.image.left, .image.right {
-			max-width: 40%;
+			max-width: 30%;
 		}
 
 			.image.left img, .image.right img {
 				width: 100%;
+
 			}
 
 		.image.left {
@@ -3771,7 +3800,7 @@ padding-top: 200px;
 		background-color: #e5474b;
 		color: #f2a3a5;
 		padding: 4em 0 2em 0;
-		background: #e5474b;
+		background: black;
 	}
 
 		#footer input, #footer select, #footer textarea {

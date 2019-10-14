@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Game</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="stylesheet" href="../assets/css/video.css" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Roguelike Build 5.json", {onProgress: UnityProgress});
+    </script>
+  </head>
+
+  <style>
+    body {
+      position: relative;
+      padding-top: 5em;
+      background-color: #232323;
+      }
+
+    .page-heading {
+      background-image: url(../images/sk.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      width: 100%;
+      text-align: center;
+     }
+     .webgl-content{
+       margin-top: 45%;
+     }
+
+    h1,h4,p{
+      color: white;
+      text-transform: none;
+      word-spacing: 8px;
+    }
+  </style>
+
+  <body>
+
+    <!-- Header -->
+      <header id="header">
+        <div class="inner">
+          <a href="index.html">Home</a>
+          <a href="../index.html" class="logo">Oz Species Check</a>
+          <nav id="nav">
+            <a href="game/index.html">Game</a>
+          <a href="photoRecognition.html">Photo Recognition</a>
+
+          <a href="newsfeed.html">News Feed</a>
+          <a href="generic.html">About us</a>
+          </nav>
+        </div>
+      </header>
+      <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+      <div class="page-heading">
+          <div class="blogcon">
+              <div class="heading-content">
+                  <h1>Oz  Species  Adventure</h1>
+              </div>
+          </div>
+      </div>
+
+      <div class="inner" >
+          <center>
+            <h4> This  is  a  survival  game. You would have 100 food point at the beginning. <h4>
+            <h4>Picking up fruit(10 points) and soda(20 points) for adding food point. </h4>
+            <h4>Attacked by enemy would lose your food point. Also, each step you walk would takes 1 food point.</h4>
+            <h4> Use arrow key to walk through the map. </h4>
+            <h4> ↓↓↓↓↓ Lets explore 8 dangerous Aussie species! (Safari is recommended) ↓↓↓↓↓</h4>
+          </center>
+      </div>
+
+    <div class="webgl-content">
+      <div id="gameContainer" style="width: 960px; height: 600px"></div>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+        <div class="title">Oz Species Adventure</div>
+      </div>
+    </div>
+  </body>
+</html>

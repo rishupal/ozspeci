@@ -4,9 +4,10 @@ val = url.split('data=').pop();
 var finalData;
 fetchLocationsBySuburb(val);
 
+
 //function to fetch all species by suburb Name. 
 function fetchLocationsBySuburb(val){
-  $('#loading-image').show();
+  
   $.ajax({
   type: "GET",
   url: "https://j0uvsseb90.execute-api.ap-southeast-2.amazonaws.com/fetchlocations/" + val + "/" + 100,
@@ -18,23 +19,76 @@ function fetchLocationsBySuburb(val){
     fetchLocationsBySuburb(val)
   }
   else{
+      description(finalData);
+      if (finalData[0].treatment!=""){
+      treatment(finalData);}
     console.log(finalData)
+    
     plotData = jsonToGeoJson(finalData)
-    console.log(plotData)
     plotMap(plotData)
-    
-    $('#headr #outer_map  h1').html("<center>Explore Other Locations for "+finalData[0].commonName+" in "+finalData[0].state +" </center>")
-    var image = finalData[0].image.split(' ').join('_')
-    $('#headr #new_text h2').html(finalData[0].commonName+"<br><img src=images/"+image+".jpg alt=''/>")
-    
-
+   
+  
     }
-      $('#loading-image').hide();
+      
 
   }
   });
 };
 
+var pArr = $("#extra .container .row .12u #image");
+var dArr = $("#extra .container .row .12u #cont");
+function description(finalData){
+    
+    var image = finalData[0].image.split(' ').join('_')
+    image ="images/"+ image+".jpg";
+    $('#headr h2').html(finalData[0].commonName);
+    var img=$("<img />").attr("src",image);
+      img.appendTo($(pArr));
+  
+    $(dArr).html("<h3>Description:</h3><p>"+finalData[0].description+"</p>");
+
+}
+
+function treatment(finalData)
+{ 
+  if (finalData[0].treatment != undefined){
+  treatment = finalData[0].treatment.split('_');
+  var tArr = $("#extra .container .row .6u #treatment");
+      
+      $(tArr).append("<button type='button' class='collapsible'>Open Treatment</button>");
+  /*$.each(treatment,function(i,item){*/
+    $(tArr).append("<div class='content'><p>"+ treatment +"</br></p></div")
+/*});*/
+}
+if (finalData[0].prevention != undefined){
+    prevention = finalData[0].prevention.split('_');
+  var tArr = $("#extra .container .row .6u #prevention");
+        
+      $(tArr).append("<button type='button' class='collapsible'>Open Prevention</button>");
+  
+  /*$.each(prevention,function(i,item){*/
+    $(tArr).append("<div class='content'><p>"+ prevention +"</p></div>")
+}
+    /*});*/
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+    
+  
+  
+
+}
 
 function jsonToGeoJson(finalData){
   var geojson = {
@@ -67,8 +121,8 @@ function jsonToGeoJson(finalData){
     };
 
 function plotMap(geojson) {
-  
-  mapboxgl.accessToken = 'pk.eyJ1IjoicmlzaHVwYWwwNSIsImEiOiJjanp0eG9mMTAwMDUyM210amx1OHZycGZ6In0.1xrOyO0qoTiRh110hkBvSw';
+   $('#headr #outer_map  h2').html("<center><br>Explore Different Locations for "+finalData[0].commonName+" in "+finalData[0].state +" </center>")
+     mapboxgl.accessToken = 'pk.eyJ1IjoicmlzaHVwYWwwNSIsImEiOiJjanp0eG9mMTAwMDUyM210amx1OHZycGZ6In0.1xrOyO0qoTiRh110hkBvSw';
 
   var map = new mapboxgl.Map({
     container: 'map', // container id
@@ -105,7 +159,7 @@ function plotMap(geojson) {
     new mapboxgl.Marker(el)
     .setLngLat(marker.geometry.coordinates)
     .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-      .setHTML('<div id="popup-container"><img class="image fit" src= images/'+marker.properties.image+'.jpg  alt="" height="100" width="100" /> ' +'<H3>' + marker.properties.commonName + '</H3><p> Spotted on: ' + marker.properties.eventDate + '</p><p> Locality: ' + marker.properties.locality + '</p>'))
+      .setHTML('<div id="popup-container><img class="image fit" src= images/'+marker.properties.image+'.jpg  alt="" height="100" width="100" /> ' +'<H3>' + marker.properties.commonName + '</H3><p> Spotted on: ' + marker.properties.eventDate + '</p><p> Locality: ' + marker.properties.locality + '</p>'))
     .addTo(map);
   });
 }

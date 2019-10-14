@@ -68,5 +68,6 @@
 						.css('transition', 'none');
 
 	});
+	
 
 })(jQuery);

@@ -57,10 +57,14 @@ function filterFunction(finalData) {
 
 
 function navigate(data) {
-  data = data.split(' ').join('_')
+  data = data.split(' ').join('_');
+  console.log("data")
+  console.log(data);
   base_url = 'suburbwisespecies.html'
   new_url =  base_url + '?data=' + data;
   window.location.href = new_url;
+  // var queryString = "?lat=" + value1 + "&lon=" + value2;
+  // window.location.href = "page2.html" + queryString;
 }
 
 $(document).ready(function() {
