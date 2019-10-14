@@ -5,12 +5,29 @@
 	<title>Go Live on Map</title>
 	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
-		
+		<link rel="stylesheet" href="assets/css/main.css" />
 	
 	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
 	<style>
-	body { margin:0; padding:0; }
-	#map { position:absolute; top:0; bottom:0; width:100%;right:0%;top:80px; }
+		body {
+        
+        margin: 0;
+        padding: 0;
+
+      }
+	/*body { margin:0; padding:0; }*/
+	#map {
+        position: absolute;
+        top: 15%;
+        width:100%;
+        border-style:solid; 
+        
+        
+        bottom: 1%;
+        padding-left: 0.2%;
+      
+      }
+	/*#map { position:absolute; top:20%; bottom:0; width:70%;right:0%;top:80px; }*/
 	</style>
 </head>
 <body>
@@ -41,9 +58,39 @@
 			</div>
 		</header>
 		<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
- 		
+ 	<!-- <div id=headr class="row no-collapse-1"> -->	
 	<div id='map'></div>
-	 
+
  	<script src = "assets/js/map.js"></script>
+ 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOG-egQI6PJ2n68TbXj0P2VSm1rJ0-rHQ&libraries=places&callback=initMap"
+    async defer></script>
 </body>
 </html>
+
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    
+    
+  </body>
+</html> -->

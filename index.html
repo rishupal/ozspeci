@@ -1,6 +1,3 @@
-<!-- Start of our home page -->
-<!DOCTYPE HTML>
-<!-- Start of our html tag in the page -->
 <html>
 	<!-- Start of our head tag in the page -->
 	<head>
@@ -10,71 +7,65 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/suburbsearch.css" />
-
+		<link rel="stylesheet" href="assets/css/video.css" />
+		<link rel="stylesheet" href="assets/css/loader.css" />
+		<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 		<script src="assets/js/placesApi.js"></script>
+
 	</head>
-	<!-- Style tag contains main css related to our page. -->
 	<style>
+	h1{
+			color:black;
+	}
+
 		body {
 		position: relative;
 		padding-top: 5em;
 	}
-.one{
-	background-image: url('images/bc.jpg');
-	/* Full height */
- height: 100%;
+	.one{
+		background-image: url('images/bc.jpg');
+		/* Full height */
+	 height: 100%;
+	 background-attachment: fixed;
 
- /* Center and scale the image nicely */
- background-position: right;
- background-repeat: no-repeat;
- background-size: cover;
-}
-p{
-	color: white;
-}
-.arrow {
-  box-sizing: border-box;
-  height: 5vw;
-  width: 5vw;
-  border-style: solid;
-  border-color: white;
-  border-width: 0px 1px 1px 0px;
-  transform: rotate(45deg);
-  transition: border-width 150ms ease-in-out;
-}
+	   /* This is what makes the background image rescale based
+	      on the container's size */
+	   background-size: cover;
 
-.arrow:hover {
-  border-bottom-width: 4px;
-  border-right-width: 4px;
-}
+	 /* Center and scale the image nicely */
+	 background-position: right;
+	 background-repeat: no-repeat;
+	 color:white;
+	}
 
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #0e242d;
-  height: 100vh;
-}
 
-#full {
-  height: 100vh;
-  background-color: #256347;
-}
+	.inner{
+		margin-top: 13%;
+		margin-left: 10%;
+		margin-right:10%;
+	}
+
+	.arrow{
+		margin-top: 8%;
+	}
 
 	</style>
-	<body>
+  <body>
+  	<div class="modal"></div>
 
-		<!-- Header -->
+    <!-- Header -->
 			<header id="header">
 				<div class="inner">
 					<a href="index.html" class="logo">Oz Species Check</a>
 					<nav id="nav">
 						<a href="index.html">Home</a>
-						<a href="generic.html">About us</a>
-						<a href="newsfeed.html">News Feed</a>
-						<a href="photoRecognition.html">Photo Recognition</a>
-						<a href="test.html">Maps</a>
+
+          <a href="game/index.html">Game</a>
+          <a href="photoRecognition.html">Photo Recognition</a>
+
+          <a href="newsfeed.html">News Feed</a>
+          <a href="generic.html">About us</a>
 
 					</nav>
 				</div>
@@ -82,159 +73,72 @@ p{
 			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
 
-		<!-- Banner -->
-			<section id="banner">
-				<div class="inner">
-					<h1>Explore Australia<span><br><br>
-					Explore animals around you</span></h1>
-					<ul class="actions">
-						<!--<li><a href="map.html" class="button alt">Get Started</a></li>-->
-					</ul>
-					<center>
-						
-					<a data-scroll href="#four">
-    			<div class="arrow"></div>
-  				</a>
-				</center>
+		<div class="6u 12u$(xsmall)">
+					<div class="table-item">
+						<div class="inner">
+
+							<h1>Explore Australia</h1>
+							<h1>	Explore species around you</h1>
+
+								<div id="locationField" >
+									<div class="search">
+  								<span <i class="fa fa-search"></span>
+
+								<input id="autocomplete" placeholder="Enter your address..." type="text"  />
+								</div>
+								<!--  <span id="searchclear" class="glyphicon glyphicon-remove-circle"></span> -->
+								</div>
+					</div>
 				</div>
-			</section>
-
-
-			<!-- four -->
-
-		<section id="four">
-			<br>
-			<div class="inner">
-				<header>
-					<center>
-					<h2>Search for spotted animals near your Location</h2>
-					<hr>
-					</center>
-					
-				</header>
-				<center>
-
-					<div id="locationField" >
-					
-    <input id="autocomplete" placeholder="Enter your address......" type="text"  />
-   <!--  <span id="searchclear" class="glyphicon glyphicon-remove-circle"></span> -->
-  </div>
-				<!-- <div class="dropdown">
-					<button onclick="myFunction()" class="dropbtn">Search Suburbs!!</button>
-
-					<div id="myDropdown" class="dropdown-content" style="height:300px">
-						<div class="form-group has-search">
-							<span class="fa fa-search form-control-feedback"></span>
-						<input type="text" placeholder="Search for Suburbs.." id="myInput" onkeyup="fetchSuburbsFromApi()">
-						 <a href="#">Caulfield</a>
-						<a href="#">Geelong</a>
-						<a href="#">Richmond</a>
-						<a href="#">Ballarat</a>
-						<a href="#">Tulamarine</a>
-						<a href="#">Doncaster</a>
-						<a href="#">Glen Huntly</a> -->
-					<!-- </div> -->
-				<!-- </div> --> 
-			</center>
 			</div>
-		</section>
-		<br><br><br><br><br><br><br><br><br>
 
-		<!-- One -->
-		<div class="one">
-			<section id="one">
-				<div class="inner">
+
+
+<center>
+
+				<div class="arrow">
+				<a data-scroll href="#one">
+			  <span class="circle">
+			    <i class="fas fa-arrow-down"></i>
+			  </span>
+				</a>
+			  <span class="pulse"></span>
+				</div>
+
+
+			</center>
+
+
+			<!-- video background-->
+      <div class="fullscreen-bg">
+        <video loop muted autoplay class="fullscreen-bg__video">
+
+        <source src="spiderVideo.mp4" type="video/mp4">
+
+        </video>
+
+      </div>
+
+<br>
+<!-- One -->
+			<div class="one">
+				<section id="one">
+					<div class="inner">
+						<br><br>
+						<header>
+							<h2>Dangerous Animals in Victoria</h2>
+						</header>
+						<p>This is informative for the new Australian who wants to live safely.</p>
+						<p>Check Dangerous animals in victoria and be safe. </p>
+						<ul class="actions">
+							<li><a href="dangerous.html" class="button alt">Explore More</a></li>
+						</ul>
+					</div>
 					<br><br>
-					<header>
-						<h2>Dangerous Animals in Victoria</h2>
-					</header>
-					<p>This is informative for the new Australian who wants to live safely.</p>
-					<p>Check Dangerous animals in victoria and be safe. </p>
-					<ul class="actions">
-						<li><a href="dangerous.html" class="button alt">Explore More</a></li>
-					</ul>
-				</div>
-				<br><br>
-			</section>
-		</div>
+				</section>
+			</div>
 
-
-
-
-
-
-		<!--  Two -->
-			<!-- <section id="two">
-				<div class="inner">
-					<article>
-						<div class="content">
-							<header>
-								<h3>Pellentesque adipis</h3>
-							</header>
-							<div class="image fit">
-								<img src="images/pic01.jpg" S>
-							</div>
-							<p>Cumsan mollis eros. Pellentesque a diam sit amet mi magna ullamcorper vehicula. Integer adipiscin sem. Nullam quis massa sit amet lorem ipsum feugiat tempus.</p>
-						</div>
-					</article>
-					<article class="alt">
-						<div class="content">
-							<header>
-								<h3>Morbi interdum mol</h3>
-							</header>
-							<div class="image fit">
-								<img src="images/pic02.jpg" alt="" />
-							</div>
-							<p>Cumsan mollis eros. Pellentesque a diam sit amet mi magna ullamcorper vehicula. Integer adipiscin sem. Nullam quis massa sit amet lorem ipsum feugiat tempus.</p>
-						</div>
-					</article>
-				</div>
-			</section> -->
-
-		<!-- Three -->
-			<!-- <section id="three">
-				<div class="inner">
-					<article>
-						<div class="content">
-							<span class="icon fa-laptop"></span>
-							<header>
-								<h3>Tempus Feugiat</h3>
-							</header>
-							<p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna lorem ullamcorper laoreet, lectus arcu.</p>
-							<ul class="actions">
-								<li><a href="#" class="button alt">Learn More</a></li>
-							</ul>
-						</div>
-					</article>
-					<article>
-						<div class="content">
-							<span class="icon fa-diamond"></span>
-							<header>
-								<h3>Aliquam Nulla</h3>
-							</header>
-							<p>Ut convallis, sem sit amet interdum consectetuer, odio augue aliquam leo, nec dapibus tortor nibh sed.</p>
-							<ul class="actions">
-								<li><a href="#" class="button alt">Learn More</a></li>
-							</ul>
-						</div>
-					</article>
-					<article>
-					<div class="content">
-							<span class="icon fa-laptop"></span>
-							<header>
-								<h3>Sed Magna</h3>
-							</header>
-							<p>Suspendisse mauris. Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula.</p>
-							<ul class="actions">
-								<li><a href="#" class="button alt">Learn More</a></li>
-							</ul>
-						</div>
-					</article>
-				</div>
-			</section> -->
-
-		<!-- Footer -->
-		<!-- Footer -->
+			<!-- Footer -->
 			<section id="footer">
 				<div class="inner">
 					<header>
@@ -243,7 +147,7 @@ p{
 					<br>
 					<h4>Team InfinITy</h4>
 					<br>
-					<p>0425098764</p>
+					
 					<p>infinity@ozspeci.com</p>
 					<div class="copyright">
 						&copy; Oz Species Check <a href="https://templated.co/">
@@ -253,40 +157,16 @@ p{
 			</section>
 
 
-					<!--
-					<form method="post" action="#">
-						<div class="field half first">
-							<label for="name">Name</label>
-							<input type="text" name="name" id="name" />
-						</div>
-						<div class="field half">
-							<label for="email">Email</label>
-							<input type="text" name="email" id="email" />
-						</div>
-						<div class="field">
-							<label for="message">Message</label>
-							<textarea name="message" id="message" rows="6"></textarea>
-						</div>
-						<ul class="actions">
-							<li><input type="submit" value="Send Message" class="alt" /></li>
-						</ul>
-					</form>
-				-->
-					<div class="copyright">
-						&copy; Oz Species Check <a href="https://templated.co/">
-					</div>
-				</div>
-			</section>
+<!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/skel.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/suburbsearch.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOG-egQI6PJ2n68TbXj0P2VSm1rJ0-rHQ&libraries=places&callback=initAutocomplete" async defer></script>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/suburbsearch.js"></script>
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOG-egQI6PJ2n68TbXj0P2VSm1rJ0-rHQ&libraries=places&callback=initAutocomplete" async defer></script>
+<script src="assets/js/placesApi.js"></script>
+<script src="assets/js/loader.js"></script>
 
-		<script src="assets/js/placesApi.js"></script>
-
-	</body>
+</body>
 </html>

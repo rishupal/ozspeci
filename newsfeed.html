@@ -4,6 +4,7 @@
 	<title>Oz Species News</title>
 	<!-- OwlCarousel -->
 	<link rel="stylesheet" href="assets/css/owl.theme.default.min.css"/>
+    <link rel="stylesheet" href="assets/css/video.css"/>
 	<link rel="stylesheet" href="assets/css/owl.carousel.min.css"/>
   	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -64,49 +65,75 @@
 		body {
 		position: relative;
 		padding-top: 5em;
+        background-color: #232323;
+        color:white;
+	   }
+        h1{
+            color:white;
+        }
+
+	.page-heading {
+	  background-image: url(images/py.jpg);
+	  background-repeat: no-repeat;
+	  background-size: cover;
+	  background-position: center center;
+	  width: 100%;
+	  text-align: center;
 	}
 
 	</style>
 </head>
 <body>
 	<!-- Header -->
+    <!--navigation-->
 		<header id="header">
 			<div class="inner">
 				<a href="index.html" class="logo">Oz Species Check</a>
 				<nav id="nav">
 					<a href="index.html">Home</a>
-					<a href="generic.html">About us</a>
-					<a href="newsfeed.html">News Feed</a>
+
+          <a href="game/index.html">Game</a>
           <a href="photoRecognition.html">Photo Recognition</a>
-					<a href="map.html">Maps</a>
+
+          <a href="newsfeed.html">News Feed</a>
+          <a href="generic.html">About us</a>
 				</nav>
 			</div>
 		</header>
+    <div class="page-heading">
+					<div class="blogcon">
+							<div class="heading-content">
+									<h1>News Feed</h1>
+							</div>
+					</div>
+    </div>
 
 <center>
 	<br>
+    <!--Section for search box-->
 				<div class="input-group md-form form-sm form-2 pl-0 w-50 m-0 p-0">
-		<input class="form-control my-0 py-1 red-border search text-black" type="text" placeholder="Search News" aria-label="Search">
+		<input class="form-control my-0 py-1 red-border search text-black" type="text" placeholder="Find what's happeing with AU species......" aria-label="Search">
 		<div class="input-group-append">
 			<span class="input-group-text transparent lighten-3 search-btn" id="basic-text1"><i class="fa fa-search text-grey" aria-hidden="true"></i></span>
 		</div>
 	</div>
 </center>
 
+    <!--Section for search result-->
 
+	<div id = "search-results" class="row py-4 mt-5 mx-0">
+
+    	<div class="result-container owl-carousel owl-theme col-md-12 px-0">
+    	</div>
+        <div class = "run-time"></div>
+    </div>
+
+        <!--Section for news feed-->
     <div id = "top" class="row py-4 mt-5 mx-0">
-		<div class="owl-carousel owl-theme col-md-12 px-0">
+        <h1 class="h1-responsive d-block col-md-12 font-weight-bold text-center mt-5">Breaking News</h1>
+		<div class="news-feed owl-carousel owl-theme col-md-12 px-0">
         </div>
 	</div>
-
-
-	<div id = "search-results" class="row py-4 mt-5 mx-0 d-none">
-    	<h1 class="h1-responsive d-block col-md-12 font-weight-bold text-center mt-5">Results</h1>
-			<br>
-    	<div class="col-md-12 result-container px-3 mx-auto row">
-
-    	</div>
-    </div>
 
     <!-- JQuery -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -121,20 +148,20 @@
 
 <script type="text/javascript">
 
+
 $(document).ready(function() {
 	/*Call on load*/
 	//Top Headlines
-	makeAjaxRequest("top-headlines","https://newsapi.org/v2/everything", {"sources":"abc-news-au","q":"species","apiKey":"950e869d40604b50a5b2c8c9c3864b27"});
+    //Request the top headlines from the New Api
+	makeAjaxRequest("top-headlines","https://newsapi.org/v2/everything", {"sources":"abc-news-au","q":"wildlife","apiKey":"950e869d40604b50a5b2c8c9c3864b27"});
+    //Request the news related to the key word entered by users
 
 	$('.search-btn').on('click', function(){
 		var q = $(".search").val();
 		$(".search").val("");
 		$(".search").text("");
-		$('#search-results').removeClass('d-none');
+        /*$('#search-results').removeClass('d-none');*/
 		$('.result-container').html("");
-		 $([document.documentElement, document.body]).animate({
-		        scrollTop: $("#search-results").offset().top
-		    }, 2000);
 		makeAjaxRequest("search","https://newsapi.org/v2/everything", {"sources":"abc-news-au","q":q,"apiKey":"950e869d40604b50a5b2c8c9c3864b27"});
 	});
 
@@ -159,31 +186,40 @@ $(document).ready(function() {
 	}
 
 	/*Output processers*/
+
 	function processTopHeadlines(response){
 		 var item = "";
         for(var i = 0; i < response.articles.length; i++){
         	var imgUrl = (response.articles[i].urlToImage == null) ? "http://buy-sildenafil-online.net/upload/noimage.jpg" : response.articles[i].urlToImage;
-        	item = " <div class='item'><div class='card z-depth-0'><img class='card-img-top' src='"+imgUrl+"'/><div class='card-body'><h4 class='card-title black-text'><a>"+response.articles[i].title+"</a></h4><p class='card-text'>"+response.articles[i].description+"</p><a href='"+response.articles[i].url+"' class='btn btn-primary'>Read More</a></div></div</div"
-        	$('.owl-carousel').append(item);
+        	item = " <div class='item'><div class='card z-depth-0'><img class='card-img-top' src='"+imgUrl+"'/><div class='card-body'><h4 class='card-title black-text'><a>"+response.articles[i].title+"</a></h4><p class='card-text'>"+response.articles[i].description+"</p><p class='card-text'>"+response.articles[i].publishedAt+"</p><a href='"+response.articles[i].url+"' class='btn btn-primary'>Read More</a></div></div</div>";
+        	$('.news-feed.owl-carousel').append(item);
         }
 
         setupCarousel();
 	}
 
 
-	function processSearch(response){
-		var item = "";
-		var loopAmount = (response.articles.length > 16)? 16:response.articles.length;
-        for(var i = 0; i < loopAmount; i++){
+    function processSearch(response){
+        var item = "";
+        if (response.articles.length == 0){
+            item = "<h2>No Recent News</h2>";
+            $('.result-container.owl-carousel').append(item);
+            $('.result-container').owlCarousel();
+        }else{
+        for(var i = 0; i < response.articles.length; i++){
         	var imgUrl = (response.articles[i].urlToImage == null) ? "http://buy-sildenafil-online.net/upload/noimage.jpg" : response.articles[i].urlToImage;
-        	item = "<div class='card card-image col-md-3 p-0' style='background-image: url("+imgUrl+");'><div class='text-white h-100 text-center d-flex align-items-center rgba-black-strong py-5 px-4'><div class='w-100'> <h5 class='orange-text'><i class='fas fa-newspaper'></i> "+response.articles[i].source.name+"</h5><h3 class='card-title pt-2'><strong>"+response.articles[i].title+"</strong></h3><a class='btn btn-orange' href='"+response.articles[i].url+"'><i class='fa fa-clone left'></i> View project</a></div></div></div>";
-        	$('.result-container').append(item);
+        	item = " <div class='item'><div class='card z-depth-0'><img class='card-img-top' src='"+imgUrl+"'/><div class='card-body'><h4 class='card-title black-text'><a>"+response.articles[i].title+"</a></h4><p class='card-text'>"+response.articles[i].description+"</p><p class='card-text'>"+response.articles[i].publishedAt+"</p><a href='"+response.articles[i].url+"' class='btn btn-primary'>Read More</a></div></div</div>";
+        	$('.result-container.owl-carousel').append(item);
+
         }
-	}
+        $('.result-container').owlCarousel('destroy');
+        $('.result-container').owlCarousel();
+    }
+    }
 
 	/*Support functions*/
 	function setupCarousel(){
-		$('.owl-carousel').owlCarousel({
+		$('.news-feed').owlCarousel({
 	    loop: true,
 	    margin: 5,
 	    responsiveClass: true,
@@ -205,6 +241,7 @@ $(document).ready(function() {
 	    }
 	  })
 	}
+
 
 	// Select all links with hashes
 	$('a[href*="#"]')

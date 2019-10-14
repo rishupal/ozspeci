@@ -10,6 +10,7 @@ PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazo
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.16.0.min.js"></script>
 
   <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/video.css" />
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <!-- <script src="./app.js"></script> -->
   <meta charset="UTF-8">
@@ -18,7 +19,21 @@ PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazo
     body {
 		position: relative;
 		padding-top: 5em;
+    background-color:#232323;
+    color:white;
 	}
+  h1{
+    color:white;
+  }
+  h2{
+    color:white;
+  }
+  h4{
+    color:white;
+  }
+  p{
+    color:white;
+  }
   .hiddenFileInput > input{
   height: 100%;
   width: 100;
@@ -34,37 +49,108 @@ PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazo
   background:url('images/icon-upload.png') no-repeat center;
 }
 
+.page-heading {
+  background-image: url(images/pk.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  text-align: center;
+}
+#tips h4{
+  color:black;
+  padding:20px;
+}
+.hintbox{
+  background-color:white;
+  opacity:0.3;
+}
+
+#uploadtip h4{
+  color:white;
+  margin-top:12px;
+  margin-left:-5%;
+}
 
 </style>
 </head>
 
 <body>
-  
+
   <!-- Header -->
     <header id="header">
       <div class="inner">
         <a href="index.html" class="logo">Oz Species Check</a>
         <nav id="nav">
           <a href="index.html">Home</a>
-          <a href="generic.html">About us</a>
-          <a href="newsfeed.html">News Feed</a>
+
+          <a href="game/index.html">Game</a>
           <a href="photoRecognition.html">Photo Recognition</a>
-          <a href="test.html">Maps</a>
+
+          <a href="newsfeed.html">News Feed</a>
+          <a href="generic.html">About us</a>
 
         </nav>
       </div>
     </header>
     <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
-    <section id="main" >
+<!-- banner -->
+    <div class="page-heading">
+        <div class="blogcon">
+            <div class="heading-content">
+                <h1>Photo Recognition</h1>
+            </div>
+        </div>
+    </div>
 
+<!--main page -->
+    <section id="main" >
       <div class="inner">
+        <!-- header-->
     <H2>Upload an image to detect species</H2>
-    
+
+
+
+<!--Input button-->
+<div class="row no-collapse-1">
+    <div class="1u 12u$(xsmall)">
     <span class="hiddenFileInput">
-    <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" >
-</span>
-  
+    <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" autofocus>
+    </span>
+    </div>
+    <div class="9u 12u$(xsmall)" id="uploadtip">
+    <h4>Upload your photo here</h4>
+    </div>
+    </div>
+<hr>
+<!-- Input tips-->
+    <center>
+    <p>Our tips for easily uploading your photos</p>
+    </center>
+	<div class="row no-collapse-1">
+    	<div class="4u 12u$(xsmall)" id="tips">
+        <div class="hintbox">
+        <h4>You can upload photos that are .JPEG, .JPG, or .PNG.</h4>
+        </div>
+      </div>
+      <div class="4u 12u$(xsmall)" id="tips">
+        <div class="hintbox">
+        <h4>You can only upload species related photos here</h4>
+        </div>
+      </div>
+      <div class="4u 12u$(xsmall)" id="tips">
+        <div class="hintbox">
+        <h4>Upload your photos faster with Google Chrome</h4>
+        </div>
+      </div>
+      </div>
+
+
+
+
+<!-- Results-->
+
 <div class="row uniform 50%">
 
                   <div class="5u 12u$(xsmall)">
@@ -73,13 +159,15 @@ PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazo
                   </div>
                   <div class="7u$ 12u$(xsmall)">
                     <div id="onlyResult>">
-                    <div id="chartContainer" style="height: 300px; width: 80%;"></div>
+                    <div id="chartContainer" style="height: 200px; width: 80%;"></div>
                     <H2 id="opResult"></H2>
                   </div>
                   </div>
                 </div>
 
 
+
+</div>
  <!--  <section class="6u 12u$(xsmall)">
     <div class="image fit">
   <img id="uploadedImage" />
@@ -88,9 +176,9 @@ PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazo
 <section class="6u 12u$(xsmall)">
 <div id="chartContainer" style="height: 300px; width: 70%;"></div>
 </section> -->
-  
-  
-</div>
+
+
+
 </section>
 
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
@@ -134,14 +222,16 @@ PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazo
   function ProcessImage() {
     AnonLog();
     var control = document.getElementById("fileToUpload");
+    /*document.getElementById("demo").innerHTML = control;*/
     var file = control.files[0];
+
     var finalData;
     var chart;
     var dataPoints = [];
 
     document.getElementById("uploadedImage").src = URL.createObjectURL(file)
     document.getElementById("uploadedImage").height="300"
-    
+
     var reader = new FileReader();
     reader.onload = (function (theFile) {
       return function (e) {
@@ -151,7 +241,7 @@ PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazo
         var rekognition = new AWS.Rekognition();
         var params = {
           Image: {
-            
+
             Bytes: e.target.result
           },
           MaxLabels: 5,
@@ -174,18 +264,21 @@ PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazo
             else{
               flag=false;
               /*document.getElementById("opResult").innerHTML = "Please upload Image relate to Animals.Thanks for visiting!!"*/
-              
+
               }
           }
           if (flag==true){
           drawBarGraph(data);
           checkDangerous(data);
-          
+
             }
           else{
+            // $('#opResult').html('<H4></H4>')
+            // $('#chartContainer').html('<H4></H4>')
+
             alert("Please upload Image related to Animals.Thanks for visiting!!")
-            
-            } 
+
+            }
           }
         });
       };
@@ -197,8 +290,8 @@ PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazo
 
     // Configure the credentials provider to use your identity pool
     AWS.config.region = 'ap-southeast-2'; // Region
-    AWS.config.credentials = new AWS.Credentials('AKIAQ6ZE5CCI2SUQXIK2', 'Sgd5+IASxs1lV8PjvLwnPQqUdmOFGbWj+hJRnX4u', sessionToken = null);
-    
+    AWS.config.credentials = new AWS.Credentials('AKIAQ6ZE5CCI46WDRYD2', 'URMWr1M20MI0K1zjaHhr1Wa8GvWqwykLQXen5eoX', sessionToken = null);
+
     AWS.config.credentials.get(function () {
       // Credentials will be available when this function is called.
       var accessKeyId = AWS.config.credentials.accessKeyId;
@@ -209,17 +302,17 @@ PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazo
 
 function drawBarGraph(finalData){
   //chart.destroy()
-  var finalPlotData=[]  
+  var finalPlotData=[]
   console.log(finalData)
   var dict=[];
   for ( var i = 0; i < finalData.Labels.length; i++) {
     var obj = finalData.Labels[i];
-    
+
     dict.push({y:parseInt(obj.Confidence),label:obj.Name});
-    
+
     finalPlotData.push(dict);
   }
-    
+
   var chart = new CanvasJS.Chart("chartContainer", {
       animationEnabled: true,
     theme: "light2",
@@ -235,26 +328,32 @@ function drawBarGraph(finalData){
     title: "Recognised Results "
       },
     axisYType: "secondary",
-        
+
       data: [{
           type: "column",
           name: "Recognition System Results",
-    
-    
-            dataPoints: finalPlotData[0] 
+
+
+            dataPoints: finalPlotData[0]
     }]
-        
+
     });
     chart.render();
   }
 
-  
+
   function checkDangerous(data)
-  {for ( var i = 0; i < data.Labels.length; i++){
+  {$('#opResult').html('<H4>Not Dangerous! </H4>');
+    for ( var i = 0; i < data.Labels.length; i++){
     if ((data.Labels[i].Name == "Spider") || (data.Labels[i].Name == "Snake"))
     {
-      document.getElementById("opResult").innerHTML = 'Dangerous! can indicate a potentially negative action.';
-    }
+       $('#opResult').html('<H4>Dangerous! can indicate a potentially negative action.</H4>')
+
+      /*document.getElementById("opResult").innerHTML = 'Dangerous! can indicate a potentially negative action.';
+    }*/
+  }   /*document.getElementById("opResult").innerHTML = 'Not Dangerous!';*/
+
+
   }
 
   }
@@ -262,7 +361,7 @@ function drawBarGraph(finalData){
 
 
 
-  
+
 </script>
 </body>
 </html>
