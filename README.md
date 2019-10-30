@@ -6,14 +6,19 @@ Go to `https://www.ozpseciescheck.tk`
 
 ## Main Feature
 Enter Address
+
 Explore Information of Species around you(Check if they are dangerous)
+
 Explore more information.
+
 Look for description ,Treatment and prevention.
+
 Check different location of species on Maps.
 
 
 ## Photo Recognition System
 Upload image of any Spotted Animals
+
 Get confidence values of it.
 
 ## News Feed
