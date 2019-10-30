@@ -1,3 +1,4 @@
+/*defining variable to store final data*/
 var finalData;
 
 function myFunction() {
@@ -5,7 +6,7 @@ function myFunction() {
   val = document.getElementById("myDropdown")
   document.getElementById("myDropdown").classList.toggle("show");
 }
-
+/*#fetching suburbs from api*/
 function fetchSuburbsFromApi(){
 $('#loading-image').show();
   

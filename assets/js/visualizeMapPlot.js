@@ -5,7 +5,7 @@ var finalData;
 fetchLocationsBySuburb(val);
 
 
-//function to fetch all species by suburb Name. 
+//function to fetch all locations of species. 
 function fetchLocationsBySuburb(val){
   
   $.ajax({
@@ -21,10 +21,12 @@ function fetchLocationsBySuburb(val){
   else{
       description(finalData);
       if (finalData[0].treatment!=""){
+        /*calling treatment for species*/
       treatment(finalData);}
     console.log(finalData)
     
     plotData = jsonToGeoJson(finalData)
+    /*passing plot data to plotmap*/
     plotMap(plotData)
    
   
@@ -37,6 +39,7 @@ function fetchLocationsBySuburb(val){
 
 var pArr = $("#extra .container .row .12u #image");
 var dArr = $("#extra .container .row .12u #cont");
+/*#defining description function*/
 function description(finalData){
     
     var image = finalData[0].image.split(' ').join('_')
@@ -48,7 +51,7 @@ function description(finalData){
     $(dArr).html("<h3>Description:</h3><p>"+finalData[0].description+"</p>");
 
 }
-
+/*#defining treatment function*/
 function treatment(finalData)
 { 
   if (finalData[0].treatment != undefined){
@@ -85,11 +88,9 @@ if (finalData[0].prevention != undefined){
   });
 }
     
-  
-  
 
 }
-
+/*#defining function to change json data to geojson*/
 function jsonToGeoJson(finalData){
   var geojson = {
   type: "FeatureCollection",
@@ -119,7 +120,7 @@ function jsonToGeoJson(finalData){
   }
     return geojson
     };
-
+/*#function take geojson data and plot map*/
 function plotMap(geojson) {
    $('#headr #outer_map  h2').html("<center><br>Explore Different Locations for "+finalData[0].commonName+" in "+finalData[0].state +" </center>")
      mapboxgl.accessToken = 'pk.eyJ1IjoicmlzaHVwYWwwNSIsImEiOiJjanp0eG9mMTAwMDUyM210amx1OHZycGZ6In0.1xrOyO0qoTiRh110hkBvSw';
