@@ -1,4 +1,4 @@
-# ozspeci
+# ozspeciescheck
 IE project - Team D2
 
 Spot various Aussies Species around Victoria
