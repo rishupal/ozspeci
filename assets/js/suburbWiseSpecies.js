@@ -1,6 +1,3 @@
-
-
-
   //fetching value from other page
   url = window.location.href;
   val = url.split('data=').pop();
@@ -10,33 +7,12 @@
   var lng=parseFloat(localData[1]);
   var locality = localData[2];
   locality = locality.split('_').join(' ')
- /* var btnContainer = document.getElementById("myBtnContainer");
-  var btns = btnContainer.getElementsByClassName("btn");
-  var current = document.getElementsByClassName("active");
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function() {
-    var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-    
-    });
-
-  }
-*/
+  /*#calling function*/
   fetchSpeciesBySuburb(lat,lng,locality);
-  
-  /*else if(c=='dangerous'){
 
-  }
-  else if(c=='ndangerous'){
-
-  }*/
-
-
+/*#defining variable to store final data*/
 var finalData;
-
-
-
+/*#navigating to other html page with map plot*/
 function navigateToMap(val) {
   val = val.split(' ').join('_')
   base_url = 'visualizeMapPlot.html'
@@ -44,7 +20,8 @@ function navigateToMap(val) {
   window.location.href = new_url;
 }
 
-
+/*defining function to fetch nearest species*/
+/*It takes parameter lat lng and locality*/
 function fetchSpeciesBySuburb(lat,lng,locality){
 
   $('#loading-image').show();
@@ -76,7 +53,7 @@ function fetchSpeciesBySuburb(lat,lng,locality){
 });
 }
 
-
+/*adding data to html pages*/
 function test(data,locality) 
 {
 	var imagesrc=[]
@@ -86,6 +63,7 @@ function test(data,locality)
 
   var pArr = $(".grid-portfolio .container .row");
   data = data;
+  /*showing unique nearest species*/
   speciesNames.push(data[0].commonName)
      speciesIndex.push(0)
      $.each(data, function(i, item){
@@ -101,7 +79,8 @@ function test(data,locality)
         }
      })
     $(".grid-portfolio .container #add").html("<h1> Information of Spotted Species near "+ locality+"</h1>");
-     
+
+   /*adding blink icon for dangerous species*/  
   $.each(speciesIndex,function(item,i){
 
     data[i].image = data[i].image.split(' ').join('_')
@@ -137,12 +116,13 @@ function test(data,locality)
   		});
     
 }
-
+/*#adding link to continue exploring button*/
 var $links = $(".continueExploringButton")
 
   $("body").on("click",".continueExploringButton",function(e){ 
     specieName = (finalData[parseInt(e.target.id)].commonName)
     //console.log(testData[parseInt(e.target.id) - 1].commonName)
+    /*navigate to map page*/
     navigateToMap(specieName)
 });
 

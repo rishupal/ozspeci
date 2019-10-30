@@ -1,8 +1,8 @@
-
+/*calling fuction */
 fetchSpeciesBySuburb();
-
+/*defining variable to store final data*/
 var finalData;
-
+/*defining function navigate to map*/
 function navigateToMap(val) {
   val = val.split(' ').join('_')
   base_url = 'visualizeMapPlot.html'
@@ -10,11 +10,12 @@ function navigateToMap(val) {
   window.location.href = new_url;
 }
 
+/*defining function to call API*/
 function fetchSpeciesBySuburb(){
 
   $('#loading-image').show();
 
-  
+  /*making ajax call to api*/
   $.ajax({
   type: "GET",
   url: "https://wnb1h6gjli.execute-api.ap-southeast-2.amazonaws.com/deploy",
@@ -40,7 +41,7 @@ function fetchSpeciesBySuburb(){
 });
 }
 
-
+/*creating function to add all the species to html grid*/
 function test(data) 
 {
 	var imagesrc=[]
@@ -65,7 +66,7 @@ function test(data)
         }
      })
     $(".grid-portfolio .container #add").html("<h1> Information of Dangerous species in Victoria");
-     
+  /*#creating blink effect for dangerous animals */ 
   $.each(speciesIndex,function(item,i){
 
     data[i].image = data[i].image.split(' ').join('_')
@@ -79,6 +80,7 @@ function test(data)
     
 }
 
+/*clickable continue exploring button*/
 var $links = $(".continueExploringButton")
 
   $("body").on("click",".continueExploringButton",function(e){ 
